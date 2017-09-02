@@ -1,0 +1,17 @@
+{
+    "name": "novas/read-excel",
+    "description": "just to read data from excel file",
+    "type": "project",
+    "authors": [{
+        "name": "NovaS",
+        "email": "nova.saputra@gmail.com"
+    }],
+    "require": {
+        "portphp/excel": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Module\\": "module"
+        }
+    }
+}
