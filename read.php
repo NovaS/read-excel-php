@@ -20,7 +20,8 @@ if(isset($reader) && isset($pdo)) {
         $row = $reader->getRow($r);
         $code = $row['Coupons'];
         try {
-            $sql = "INSERT INTO voucher (code,vendor) VALUES (:code,'vendor')";
+            $sql = "INSERT INTO dino_voucher (voucher_serviceid,voucher_msisdn,voucher_voucher,voucher_prosestime,voucher_expiretime,voucher_usage) ";
+            $sql.= "VALUES ('2029','',:code,now(),str_to_date('2017-12-31 23:59:59','%Y-%m-%d %H:%i:%s'),0)";
             $query = $pdo->prepare($sql);
 			$query->bindParam(':code',$code);
 			$query->execute();
