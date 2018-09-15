@@ -7,6 +7,8 @@
         "email": "nova.saputra@gmail.com"
     }],
     "require": {
+        "pimple/pimple": "^3.2",
+        "monolog/monolog": "^1.17",
         "portphp/excel": "^1.0"
     },
     "autoload": {
