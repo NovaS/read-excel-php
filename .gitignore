@@ -28,3 +28,6 @@ phpunit.phar
 
 # voucher file
 *.xlsx
+
+# config file
+.env
