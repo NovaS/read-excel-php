@@ -10,7 +10,7 @@ $serviceid = getenv('VOUCHER_SERVICE_ID');
 $filename = getenv('VOUCHER_FILE_EXCEL');
 $file = new \SplFileObject($filename);
 $reader = new ExcelReader($file);
-$dao = $container['daoDinoVoucher'];
+$dao = $container['daoVoucher'];
 if(isset($reader) && isset($dao)) {
     $reader->setColumnHeaders(['VOUCHER']);
     $reader->setHeaderRowNumber(0);
