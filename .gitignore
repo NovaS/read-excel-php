@@ -26,8 +26,12 @@ phpunit.phar
 # local phpunit config
 /phpunit.xml
 
-# voucher file
-*.xlsx
-
 # config file
 .env
+
+# app output
+/log
+/logs
+
+# voucher file
+*.xlsx

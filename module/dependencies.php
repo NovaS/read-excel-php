@@ -13,7 +13,7 @@ $dotenv->required(['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASS']);
 $container = new Container();
 $container['logger'] = function ($c) {
   $logger = new Logger('app');
-  $logger->pushHandler(new RotatingFileHandler('logs/app.log', 100, Logger::INFO));
+  $logger->pushHandler(new RotatingFileHandler('log/app.log', 100, Logger::INFO));
   return $logger;
 };
 
