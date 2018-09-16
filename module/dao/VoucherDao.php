@@ -3,26 +3,28 @@ namespace Module\Dao;
 
 use PDO;
 
-class DinoVoucherDao {
+class VoucherDao {
   private $logger;
   private $pdo;
+  private $table_name;
 
   public function __construct($logger, $pdo) {
     $this->logger = $logger;
     $this->pdo = $pdo;
+    $this->table_name = 'dvoucher';
   }
 
   public function getCount($serviceid=null) {
     if($serviceid==null) return false;
     try {
-      $stmt = $this->pdo->prepare("SELECT count(*) total FROM voucher WHERE voucher_serviceid=:serviceid");
+      $stmt = $this->pdo->prepare("SELECT count(*) total FROM $this->table_name WHERE voucher_serviceid=:serviceid");
       $stmt->bindParam(':serviceid',$serviceid);
       $stmt->execute();
       $result = $stmt->fetch();
       $stmt = null;
       return $result;
     } catch (PDOException $e) {
-        $this->logger->error('DinoVoucherDao-getCount: '.$e->getMessage());
+        $this->logger->error('VoucherDao-getCount: '.$e->getMessage());
         return null;
     }
   }
@@ -30,7 +32,7 @@ class DinoVoucherDao {
   public function findByVoucher($voucher=null) {
     if($voucher==null) return false;
     try {
-      $sql = "SELECT * FROM dvoucher WHERE voucher_voucher=:voucher";
+      $sql = "SELECT * FROM $this->table_name WHERE voucher_voucher=:voucher";
       $stmt = $this->pdo->prepare($sql);
       $stmt->bindParam(':voucher',$voucher);
       $stmt->execute();
@@ -38,7 +40,7 @@ class DinoVoucherDao {
       $stmt = null;
       return $result;
     } catch (PDOException $e) {
-        $this->logger->error('DinoVoucherDao-findByVoucher: '.$e->getMessage());
+        $this->logger->error('VoucherDao-findByVoucher: '.$e->getMessage());
         return null;
     }
   }
@@ -48,7 +50,7 @@ class DinoVoucherDao {
     if($msisdn==null) $msisdn = '';
     if($moid==null) $moid = '';
     try {
-      $sql = "INSERT INTO dvoucher (voucher_serviceid, voucher_voucher, voucher_msisdn, voucher_moid, voucher_prosestime, voucher_expiretime, voucher_usage, voucher_status) ";
+      $sql = "INSERT INTO $this->table_name (voucher_serviceid, voucher_voucher, voucher_msisdn, voucher_moid, voucher_prosestime, voucher_expiretime, voucher_usage, voucher_status) ";
       $sql.= "VALUES (:serviceid,:voucher,:msisdn,:moid,NOW(),NOW(),0,0)";
       $stmt = $this->pdo->prepare($sql);
       $stmt->bindParam(':serviceid',$serviceid);
@@ -60,7 +62,7 @@ class DinoVoucherDao {
       $stmt = null;
       return $result;
     } catch (PDOException $e) {
-        $this->logger->error('DinoVoucherDao-insert: '.$e->getMessage());
+        $this->logger->error('VoucherDao-insert: '.$e->getMessage());
         return null;
     }
   }

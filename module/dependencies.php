@@ -4,7 +4,7 @@ use Pimple\Container;
 use Monolog\Logger;
 use Monolog\Handler\RotatingFileHandler;
 use Module\config\DinoDb;
-use Module\Dao\DinoVoucherDao;
+use Module\Dao\VoucherDao;
 
 $dotenv = new Dotenv(__DIR__);
 $dotenv->load();
@@ -22,6 +22,6 @@ $container['pdoDino'] = function ($c) {
   return $db->getPdo();
 };
 
-$container['daoDinoVoucher'] = function ($c) {
-  return new DinoVoucherDao($c['logger'], $c['pdoDino']);
+$container['daoVoucher'] = function ($c) {
+  return new VoucherDao($c['logger'], $c['pdoDino']);
 };
