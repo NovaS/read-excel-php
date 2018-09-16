@@ -7,7 +7,10 @@
         "email": "nova.saputra@gmail.com"
     }],
     "require": {
-        "portphp/excel": "^1.0"
+        "pimple/pimple": "^3.2",
+        "monolog/monolog": "^1.17",
+        "portphp/excel": "^1.0",
+        "vlucas/phpdotenv": "^2.5"
     },
     "autoload": {
         "psr-4": {
